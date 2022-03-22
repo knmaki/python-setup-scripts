@@ -1,0 +1,5 @@
+{
+    "installer" : "python-3.y.z-amd64.exe",
+    "venvRoot"  : "D:\\UserProgram\\.venv",
+    "venvName"  : "base"
+}

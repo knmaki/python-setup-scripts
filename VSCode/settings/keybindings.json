@@ -1,0 +1,6 @@
+[
+    {
+        "key": "ctrl+shift+f5",
+        "command": "workbench.action.debug.selectandstart"
+    }
+]

@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\VSCode]
+@="Open with Code(&V)"
+"Icon"="PATH_TO_VSCODE"
+
+[HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]
+@="\"PATH_TO_VSCODE\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]
+@="Open with Code(&V)"
+"Icon"="\"PATH_TO_VSCODE\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode\command]
+@="\"PATH_TO_VSCODE\" \"%V\""

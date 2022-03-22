@@ -1,0 +1,12 @@
+#augustocdias.tasks-shell-input
+#cpptools-win32    # githubから取得すること
+donjayamanne.python-environment-manager
+#eamodio.gitlens
+#MS-CEINTL.vscode-language-pack-ja
+ms-python.python
+ms-python.vscode-pylance
+ms-toolsai.jupyter
+ms-toolsai.jupyter-keymap
+#ms-vscode.cmake-tools
+#ms-vscode.PowerShell
+#twxs.cmake

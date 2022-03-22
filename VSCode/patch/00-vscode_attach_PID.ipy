@@ -1,0 +1,11 @@
+%load_ext autoreload
+%autoreload 2
+
+import os
+from pathlib import Path
+
+
+pid_txt = Path(f'{os.environ["LOCALAPPDATA"]}\\Temp\\pid.txt')
+
+with open(pid_txt, mode='w') as f:
+    f.write(f'{os.getpid()}')

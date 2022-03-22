@@ -1,0 +1,87 @@
+{
+    "debug.onTaskErrors": "showErrors",
+
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.size": "fit",
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "files.associations": {
+        "*.rmd": "markdown"
+    },
+    "files.autoGuessEncoding": true,
+    "files.autoSave": "afterDelay",
+
+    "jupyter.askForKernelRestart": false,
+    "jupyter.experimental.debugging": true,
+    "jupyter.interactiveWindowMode": "perFile",
+    "jupyter.jupyterServerType": "local",
+
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Python: Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "Python: Attach using Process Id",
+                "type": "python",
+                "request": "attach",
+                "processId": "${command:pickProcess}"
+            },
+            {
+                "name": "C++: Attach using Process ID",
+                "type": "cppvsdbg",
+                "request": "attach",
+                "processId": "${command:pickProcess}"    
+            },
+            {
+                "name": "C++: Auto attach to Jupyter",
+                "type": "cppvsdbg",
+                "request": "attach",
+                "processId": "${input:readPID}"    
+            }
+        ],
+        "inputs": [
+            {
+                "id": "readPID",
+                "type": "command",
+                "command": "shellCommand.execute",
+                "args": {
+                    "command": "type ${env:LOCALAPPDATA}\\Temp\\pid.txt",
+                    "useFirstResult": "True",
+                    "fieldSeparator": " "
+                }
+            }
+        ]
+    },
+
+    "python.languageServer": "Pylance",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+
+    "terminal.integrated.automationShell.windows": "",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": [
+                "-NoExit",
+                "-ExecutionPolicy", "Bypass",
+                "-Command",
+                    "chcp 65001;"
+            ]
+        }
+    },
+ 
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.editor.wrapTabs": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    }
+}

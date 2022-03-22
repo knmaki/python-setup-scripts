@@ -1,0 +1,7 @@
+/.vscode/*
+
+/Python/installer/*.exe
+/Python/packages/*.gz
+/Python/packages/*.whl
+/VSCode/extensions/*.vsix
+/VSCOde/installer/*.zip

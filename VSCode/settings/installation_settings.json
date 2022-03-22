@@ -1,0 +1,4 @@
+{
+    "installer"     : "VSCode-win32-x64-*.zip",
+    "dest_folder"   : "D:\\UserProgram\\Microsoft VS Code"
+}
