@@ -31,7 +31,7 @@ function New-Venv{
     
     # âºëzä¬ã´çÏê¨
     $installerProcessName = ([System.IO.Path]::GetFileNameWithoutExtension($installer))
-    $installerProcessName -match 'python-\d.\d'
+    $installerProcessName -match 'python-\d.\d+'
     $pythonVersion = ($Matches[0] -Replace "python-", "") -Replace "\.", ""
     $pythonExe = Join-Path $env:PROGRAMFILES "/Python${pythonVersion}/python.exe"
     
