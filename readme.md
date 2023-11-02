@@ -14,6 +14,7 @@
 このツールは以下の環境で利用を前提とする:
 
 - OSはWindows
+- 各種ファイルの準備にインターネットにつながったPCが必要
 - インストール先はスタンドアローンPC（インターネットにつながっていない/非ブラウザ通信が遮断）
 - 本フォルダーのパスに空白が含まれていない。
 - 情シスからスタンドアローンPCでのアドミン権限付きアカウントの利用が（一時的に）許可されている
@@ -28,19 +29,19 @@
 - VSCode拡張機能のインストール / 更新
 
 ## 2. セットアップの準備（配布者向け）
-インストーラー等のダウンロードが必要になるため、インターネットが使えるPC（OSはWindows）に本リポジトリをクローンし以下の作業を行う。全部終わらせたら、すべてのファイルを非配布者のPCにコピーして3.に進む。
+インターネットが使えるPC（OSはWindows）で以下の作業を行う。本リポジトリをクローンや、インストーラー等のダウンロードが必要になるため。全部終わらせたら、すべてのファイルを非配布者のPCにコピーして3.に進む。
 ### 2.1. Python
+-  [配布元](https://www.python.org/downloads/windows/)から、利用したいバージョンのPythonインストーラーダウンロードし、インストール。
 - Pythonインストーラー: 
-  1. [配布元](https://www.python.org/downloads/windows/)からダウンロードし、`root/Python/installer`に配置。
-  2. `root/Python/settings/installation_settings.json`の各値を更新。
+  2. ↑でダウンロードしたインストーラーを`root/Python/installer`に配置。
+  3. `root/Python/settings/installation_settings.json`の各値を更新。
      - `installer`: インストーラーのファイル名
      - `venvRoot`: 仮想環境のルート フォルダーを絶対パスで指定。標準ユーザー権限で読み書きできる場所にしておくのがおすすめ。
-     - `venvName`: この名前の仮想環境を`venvRoot`下に作成
+     - `venvName`: この名前の仮想環境を`venvRoot`下に作成する。
 - Pythonパッケージ: 
-  1. Pythonインストーラーと同じバージョンのPythonをインストール。
-  2. `root/Python/settings/requirements.txt`で、仮想環境にインストールするパッケージを編集。このファイルはインストール用スクリプト等で[`pip download -r`](https://pip.pypa.io/en/stable/cli/pip_download/#cmdoption-r)/[`pip install -r`](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-r)の引数として使用。書き方は[ドキュメント](https://pip.pypa.io/en/stable/reference/requirements-file-format/)を参照。
-  3. `root/Python/packages`内のファイルを削除
-  4. `root/Python/PowerShell(ps1実行可).lnk`からPowershellを起動し`root/Python/scripts/download.ps1`を実行し、パッケージ インストーラー（`.whl`ファイルとか）をダウンロード。ちなみに`root/Python/PowerShell(ps1実行可).lnk`は`powershell.exe`に起動オプション`-ExecutionPolicy Bypass`を追加したもの。
+  1. `root/Python/settings/requirements.txt`に、仮想環境にインストールするパッケージを記述。このファイルはインストール用スクリプト等で[`pip download -r`](https://pip.pypa.io/en/stable/cli/pip_download/#cmdoption-r)/[`pip install -r`](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-r)の引数として使用。書き方は[ドキュメント](https://pip.pypa.io/en/stable/reference/requirements-file-format/)を参照。
+  2. `root/Python/packages`内のファイルを削除
+  3. `root/Python/PowerShell(ps1実行可).lnk`からPowershellを起動し`root/Python/scripts/download.ps1`を実行し、パッケージ インストーラー（`.whl`ファイルとか）をダウンロード。ちなみに`root/Python/PowerShell(ps1実行可).lnk`は`powershell.exe`に起動オプション`-ExecutionPolicy Bypass`を追加したもの。
 
 - 共通設定: 
   1. `root/Python/scripts/profile.ps1`: PowerShell起動時に実行されるスクリプト。ユーザーが使いやすいようなコマンドレットを追加するためのもの。（あれば）既存の`$PSHome/profile.ps1`を上書きするため、不要であれば`root/Python/install.ps1`の`Install-Python`関数から該当部分を削除。
