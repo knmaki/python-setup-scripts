@@ -93,50 +93,51 @@ function Invoke-Main{
     $venvRoot = $settings.venvRoot # 仮想環境インストール先フォルダー
     $venvName = $settings.venvName # 仮想環境名
 
-
-    # 開始メッセージ
-    Write-Host ((
-        'Pythonおよびパッケージをインストールします。',
-        'インストール対象に応じて1～5を入力してください。',
-        '（1、2は管理者権限が必要です）',
-        '    1: 以下の2～4',
-        '    2: Python本体',
-        '    3: 仮想環境（base:venv）作成',
-        '    4: Pythonパッケージ',
-        '    5: xlwingsアドイン',
-        '    それ以外: インストール中止'
-    ) -join "`n")
-
-
-    # インストール
-    $target = Read-Host
-    switch ($target){
-        1 {
-            Install-Python -installer $installer -venvRoot $venvRoot
-            New-Venv -installer $installer -venvRoot $venvRoot -venvName $venvName
-            Install-Packages -venvRoot $venvRoot -venvName $venvName
-        }
-        2 {
-            Install-Python -installer $installer -venvRoot $venvRoot
-        }
-        3 {
-            New-Venv -installer $installer -venvRoot $venvRoot -venvName $venvName
-        }
-        4 {
-            Install-Packages -venvRoot $venvRoot -venvName $venvName
-        }
-        5 {
-            Install-XlwingsAddin -venvRoot $venvRoot -venvName $venvName
-        }
-    }
+    :loopLabel while ($true) {
+        # 開始メッセージ
+        Write-Host ((
+            'Pythonおよびパッケージをインストールします。',
+            'インストール対象に応じて1～5を入力してください。',
+            '（1、2は管理者権限が必要です）',
+            '    1: 以下の2～4',
+            '    2: Python本体',
+            '    3: 仮想環境（base:venv）作成',
+            '    4: Pythonパッケージ',
+            '    5: xlwingsアドイン',
+            '    それ以外: インストール中止'
+        ) -join "`n")
 
 
-    # 終了メッセージ
-    if ($target -in @(1, 2, 3, 4, 5)){
-        Write-Host 'インストールが終了しました。'
-    }
-    Write-Host '終了するには任意のキーを押してください。'
-    Read-Host   
+        # インストール
+        $target = Read-Host
+        try{
+            switch ($target){
+                1 {
+                    Install-Python -installer $installer -venvRoot $venvRoot
+                    New-Venv -installer $installer -venvRoot $venvRoot -venvName $venvName
+                    Install-Packages -venvRoot $venvRoot -venvName $venvName
+                }
+                2 {
+                    Install-Python -installer $installer -venvRoot $venvRoot
+                }
+                3 {
+                    New-Venv -installer $installer -venvRoot $venvRoot -venvName $venvName
+                }
+                4 {
+                    Install-Packages -venvRoot $venvRoot -venvName $venvName
+                }
+                5 {
+                    Install-XlwingsAddin -venvRoot $venvRoot -venvName $venvName
+                }
+                default{
+                    break loopLabel
+                }
+            }                
+        } catch {
+            Write-Host "エラーが発生しました"
+        }
+    }    
+   
 }
 
 

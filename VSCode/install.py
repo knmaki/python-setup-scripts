@@ -228,43 +228,41 @@ def upsert_dict(dict_from: dict, dict_to: dict) -> dict:
 
 
 if __name__ == '__main__':
-    # 開始メッセージ
-    print(textwrap.dedent(
-        '''\
-        Visual Studio Codeおよび拡張機能をインストールします。
-        インストール対象に応じて1または2を入力してください。
-        （1はコンテキストメニューの追加を含むため管理者権限が必要です）
-            1: すべて（初回）
-            2: すべて（2回目以降）
-            3: Visal Studio Code本体
-            4: 拡張機能
-            5: 設定取り込み
-            それ以外: インストール中止\
-        '''
-    ))
+    while True:
+        # 開始メッセージ
+        print(textwrap.dedent(
+            '''\
+            Visual Studio Codeおよび拡張機能をインストールします。
+            インストール対象に応じて1または2を入力してください。
+            （1はコンテキストメニューの追加を含むため管理者権限が必要です）
+                1: すべて（初回）
+                2: すべて（2回目以降）
+                3: Visal Studio Code本体
+                4: 拡張機能
+                5: 設定取り込み
+                それ以外: インストール中止\
+            '''
+        ))
 
 
-    # インストール
-    target = input()
-    try:
-        if target=='1':
-            main_intall_vscode(add_context_menu=True)
-            main_install_extensions()
-            main_import_settings()
-        elif target=='2':
-            main_intall_vscode(add_context_menu=False)
-            main_install_extensions()
-            main_import_settings()
-        elif target=='3':
-            main_intall_vscode(add_context_menu=False)        
-        elif target=='4':
-            main_install_extensions()
-        elif target=='5':
-            main_import_settings()
-        print('インストールが終了しました。')
-    except:
-        print(traceback.format_exc())
-
-    # 終了メッセージ
-    print('終了するには任意のキーを押してください。')
-    input()
+        # インストール
+        target = input()
+        try:
+            if target=='1':
+                main_intall_vscode(add_context_menu=True)
+                main_install_extensions()
+                main_import_settings()
+            elif target=='2':
+                main_intall_vscode(add_context_menu=False)
+                main_install_extensions()
+                main_import_settings()
+            elif target=='3':
+                main_intall_vscode(add_context_menu=False)        
+            elif target=='4':
+                main_install_extensions()
+            elif target=='5':
+                main_import_settings()
+            else:
+                break
+        except:
+            print(traceback.format_exc())
